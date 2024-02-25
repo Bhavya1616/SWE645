@@ -1,0 +1,440 @@
+<!-- Name: Bhavya Sree Pannem
+Gnum: G01413450 -->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>CS Department Survey</title>
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="script.js"></script>
+    <script>
+        // JavaScript code for cookie and greeting implementation
+
+        // Function to set a cookie with a given name, value, and expiration date
+        function setCookie(name, value, days) {
+            var expires = "";
+            if (days) {
+                var date = new Date();
+                date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
+                expires = "; expires=" + date.toUTCString();
+            }
+            document.cookie = name + "=" + value + expires + "; path=/";
+        }
+
+        // Function to get a cookie by name
+        function getCookie(name) {
+            var nameEQ = name + "=";
+            var cookies = document.cookie.split(';');
+            for (var i = 0; i < cookies.length; i++) {
+                var cookie = cookies[i];
+                while (cookie.charAt(0) === ' ') {
+                    cookie = cookie.substring(1, cookie.length);
+                }
+                if (cookie.indexOf(nameEQ) === 0) {
+                    return cookie.substring(nameEQ.length, cookie.length);
+                }
+            }
+            return null;
+        }
+
+        // Function to display a greeting message based on the time of day
+        function displayGreeting() {
+            var username = getCookie("username");
+            if (username) {
+                var now = new Date();
+                var hour = now.getHours();
+                var greeting;
+                if (hour >= 5 && hour < 12) {
+                    greeting = "Good morning";
+                } else if (hour >= 12 && hour < 17) {
+                    greeting = "Good afternoon";
+                } else {
+                    greeting = "Good evening";
+                }
+
+            } else {
+                // If no username cookie is found, prompt the user to enter their name
+                var username = prompt("Please enter your name:");
+                if (username) {
+                    setCookie("username", username, 1); // Set the username cookie with a 1-day expiration
+                    window.location.reload();
+                    if (history.scrollRestoration) {
+                        history.scrollRestoration = 'manual';
+                    } else {
+                        window.onbeforeunload = function () {
+                            window.scrollTo(0, 0);
+                        }
+                    }
+                }
+            }
+            // document.writeln("<h1>"+greeting+" "+username+", Welcome to SWE642 Survey</h1>");
+            // document.writeln("<a href='javascript:changeName()'>" + "Change Name if you are not "+username+"</a>");
+            var outputElement = document.getElementById("output");
+            var anchor = document.createElement("a");
+
+            // Set the href attribute to the URL you want
+            anchor.href = 'javascript:changeName()';
+
+            // Set the text content for the link
+            anchor.textContent = "Not " + username+"? Click here !!";
+
+            // Get the container div where you want to add the link
+            var container = document.getElementById("anchorContainer");
+
+            // Append the anchor element to the container
+            container.appendChild(anchor);
+            outputElement.textContent = greeting + " " + username + ", welcome to SWE642 Survey";
+            // document.writeln("<a href='javascript:changeName()'>" + "Click here to change name if you are not "+username+"</a>");
+
+
+        }
+
+        // Function to change the name
+        function changeName() {
+            var username = prompt("Please enter your name:");
+            if (username) {
+                setCookie("username", username, 1); // Set the username cookie with a 1-day expiration
+                window.location.reload();
+                if (history.scrollRestoration) {
+                    history.scrollRestoration = 'manual';
+                } else {
+                    window.onbeforeunload = function () {
+                        window.scrollTo(0, 0);
+                    }
+                }
+
+            }
+        }
+
+        // Call the displayGreeting function when the page loads
+        window.onload = displayGreeting;
+
+        document.addEventListener('DOMContentLoaded', function () {
+            // Get the first input element
+            var firstInput = document.querySelector('input:not([type="hidden"])');
+
+            // Set focus on it
+            if (firstInput) {
+                firstInput.focus();
+            }
+        });
+
+    </script>
+
+    <!-- Custom CSS -->
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            font-weight: 550;
+            background-image: url('https://transportation.gmu.edu/wp-content/uploads/211101318-300x200.jpg');
+            background-size: cover;
+        }
+
+        .greeting {
+            font-size: 50px;
+            margin-left: 20px;
+        }
+
+        #anchorContainer {
+            margin-left: 20px;
+        }
+
+        .survey-box {
+            border: 5px solid #006633;
+            /* GMU Green border */
+            box-shadow: 5px 5px 10px rgba(0, 0, 0, 2);
+            /* Box shadow */
+            padding: 20px;
+            background-color: rgba(255, 215, 0, 0.75);
+            text-align: center;
+            color: #006633
+        }
+
+        h1 {
+            color: #006633;
+            /* GMU Green for h1 */
+        }
+
+        .custom-style {
+            background: rgba(215, 214, 210, 0.4);
+            box-shadow: 5px 5px 10px rgba(46, 45, 40, 0.75);
+            ;
+        }
+
+        .required-indicator {
+            color: #e30707;
+            /* Yellow for required fields */
+        }
+
+        .btn {
+            background-color: #006633;
+            color: aliceblue;
+            font-weight: 500;
+            box-shadow: 5px 5px 5px black;
+        }
+
+        /* Footer Styles */
+        .footer {
+            background-color: #343a40;
+            color: #ffffff;
+            padding: 20px 0px;
+            padding-left: 400px;
+            margin-top: 50px;
+        }
+
+        .footer p {
+            margin-bottom: 0;
+        }
+
+        .footer ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .footer li {
+            display: inline-block;
+            margin-right: 10px;
+        }
+
+        .footer a {
+            color: #ffffff;
+            text-decoration: none;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="greeting">
+        <p id="output"></p>
+    </div>
+    <div id="anchorContainer"></div>
+    <div class="container mt-5 mb-5">
+        <div class="row justify-content-center">
+            <div class="col-md-11">
+                <div class="survey-box">
+                    <h1>CS Department Survey Form</h1>
+                </div>
+                <!-- <div class="row justify-content-center"> -->
+
+                <div class="custom-style p-md-5 justify-content-center">
+                    <div class="col-md-12">
+                        <fieldset>
+
+
+                            <form action="#" method="post" autocomplete="on">
+                                <!-- Username -->
+                                <div class="form-group mt-5">
+                                    <label for="username">Username <span class="required-indicator">*</span></label>
+                                    <input type="text" class="form-control" id="username" name="username" required
+                                        placeholder="Enter your Name">
+                                </div>
+
+                                <!-- Street Address -->
+                                <div class="form-group">
+                                    <label for="streetAddress">Street Address <span
+                                            class="required-indicator">*</span></label>
+                                    <input type="text" class="form-control" id="streetAddress" name="streetAddress"
+                                        required>
+                                </div>
+
+                                <!-- City, State, Zip -->
+                                <div class="form-row">
+                                    <div class="form-group col-md-2">
+                                        <label for="zip">Zip <span class="required-indicator">*</span></label>
+                                        <input type="text" id="zip" name="zip" class="form-control" required
+                                            onblur="populateCityState()">
+                                        <span id="out"></span>
+                                    </div>
+                                    <div class="form-group col-md-6">
+                                        <label for="city">City <span class="required-indicator">*</span></label>
+                                        <input type="text" id="city" name="city" class="form-control" required>
+
+                                    </div>
+                                    <div class="form-group col-md-4">
+                                        <label for="state">State <span class="required-indicator">*</span></label>
+                                        <input type="text" id="state" name="state" class="form-control" required>
+                                    </div>
+
+                                </div>
+
+                                <!-- Telephone, Email, URL -->
+                                <div class="form-row">
+                                    <div class="form-group col-md-4">
+                                        <label for="telephone">Telephone <span
+                                                class="required-indicator">*</span></label>
+                                        <input type="tel" class="form-control" id="telephone" name="telephone"
+                                            placeholder="(___)-___-___" required>
+                                    </div>
+                                    <div class="form-group col-md-4">
+                                        <label for="email">Email <span class="required-indicator">*</span></label>
+                                        <input type="email" class="form-control" id="email" name="email"
+                                            placeholder="example@email.com" required>
+                                    </div>
+                                    <div class="form-group col-md-4">
+                                        <label for="url">URL</label>
+                                        <input type="url" class="form-control" id="url" name="url"
+                                            placeholder="https://url.com">
+                                    </div>
+                                </div>
+
+                                <!-- Date of Survey -->
+                                <div class="form-group">
+                                    <label for="dateOfSurvey">Date of Survey <span
+                                            class="required-indicator">*</span></label>
+                                    <input type="date" class="form-control" id="dateOfSurvey" name="dateOfSurvey"
+                                        required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="data">Raffle <span
+                                            class="required-indicator">*</span></label>
+                                    <input type="text" class="form-control" id="data" name="data"
+                                        placeholder="Enter 10 numbers between 1 and 100" required>
+                                </div>
+
+                                <!-- Output Fields: Average and Maximum -->
+                                <div class="form-group">
+                                    <label>Average</label>
+                                    <input type="text" class="form-control" id="average" readonly>
+                                </div>
+                                <div class="form-group">
+                                    <label>Maximum</label>
+                                    <input type="text" class="form-control" id="maximum" readonly>
+                                </div>
+
+                                <!-- Liked Most About Campus (Checkboxes) -->
+                                <div class="form-group">
+                                    <label>Liked Most About Campus <span class="required-indicator">*</span></label><br>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="checkbox" id="likedStudents"
+                                            name="likedAboutCampus[]" value="students">
+                                        <label class="form-check-label" for="likedStudents">Students</label>
+                                    </div>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="checkbox" id="likedLocation"
+                                            name="likedAboutCampus[]" value="location">
+                                        <label class="form-check-label" for="likedLocation">Location</label>
+                                    </div>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="checkbox" id="likedCampus"
+                                            name="likedAboutCampus[]" value="campus">
+                                        <label class="form-check-label" for="likedCampus">Campus</label>
+                                    </div>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="checkbox" id="likedAtmosphere"
+                                            name="likedAboutCampus[]" value="atmosphere">
+                                        <label class="form-check-label" for="likedAtmosphere">Atmosphere</label>
+                                    </div>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="checkbox" id="likedDormRooms"
+                                            name="likedAboutCampus[]" value="dormRooms">
+                                        <label class="form-check-label" for="likedDormRooms">Dorm Rooms</label>
+                                    </div>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="checkbox" id="likedSports"
+                                            name="likedAboutCampus[]" value="sports">
+                                        <label class="form-check-label" for="likedSports">Sports</label>
+                                    </div>
+                                </div>
+
+                                <!-- How Became Interested (Radio Buttons) -->
+                                <div class="form-group">
+                                    <label>How did you become interested in the university? <span
+                                            class="required-indicator">*</span></label><br>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" id="interestFriends"
+                                            name="interestSource" value="friends">
+                                        <label class="form-check-label" for="interestFriends">Friends</label>
+                                    </div>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" id="interestTV"
+                                            name="interestSource" value="television">
+                                        <label class="form-check-label" for="interestTV">Television</label>
+                                    </div>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" id="interestInternet"
+                                            name="interestSource" value="internet">
+                                        <label class="form-check-label" for="interestInternet">Internet</label>
+                                    </div>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" id="interestOther"
+                                            name="interestSource" value="other">
+                                        <label class="form-check-label" for="interestOther">Other</label>
+                                    </div>
+                                </div>
+
+                                <!-- Additional Comments -->
+                                <div class="form-group">
+                                    <label for="comments">Additional Comments</label>
+                                    <textarea class="form-control" id="comments" name="comments" rows="4"
+                                        placeholder="Add your comments here"></textarea>
+                                </div>
+
+                                <!-- High School Graduation Month and Year (Using datalist) -->
+                                <div class="form-row">
+                                    <div class="form-group col-md-6">
+                                        <label for="gradMonth">High School Graduation Month</label>
+                                        <input list="months" class="form-control" id="gradMonth" name="gradMonth">
+                                        <datalist id="months">
+                                            <option value="January">
+                                            <option value="February">
+                                            <option value="March">
+                                            <option value="April">
+                                            <option value="May">
+                                            <option value="June">
+                                            <option value="August">
+                                            <option value="September">
+                                            <option value="October">
+                                            <option value="November">
+                                            <option value="December">
+                                        </datalist>
+                                    </div>
+                                    <div class="form-group col-md-6">
+                                        <label for="gradYear">High School Graduation Year</label>
+                                        <input type="text" class="form-control" id="gradYear" name="gradYear">
+                                    </div>
+                                </div>
+
+                                <!-- Likelihood of Recommending Dropdown -->
+                                <div class="form-group">
+                                    <label for="likelihood">Likelihood of Recommending<span
+                                            class="required-indicator">*</span></label>
+                                    <select class="form-control" id="likelihood" name="likelihood" required>
+                                        <option value="Very Likely">Very Likely</option>
+                                        <option value="Likely">Likely</option>
+                                        <option value="Unlikely">Unlikely</option>
+                                    </select>
+                                </div>
+                                <button type="button" class="btn btn-secondary mr-5" id="resetButton">Reset</button>
+
+                                <!-- Submit Button -->
+                                <button type="submit" class="btn">Submit</button>
+                            </form>
+                        </fieldset>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+    </div>
+    <footer class="footer text-center">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    <p>&copy; Bhavya Sree Pannem. GNumber : G01413450 </p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+
+</html>
