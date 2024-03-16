@@ -31,7 +31,7 @@ pipeline {
             steps {
                 script {
                     sh "kubectl set image deployment/deploy container-0=bhavya16/swe645assignment2:${dateTag}"
-                    sh "kubectl set image deployment/deployloadbalancer container-0-0=bhavya16/swe645assignment2:${dateTag}"
+                    sh "kubectl set image deployment/deployloadbalancer container-0=bhavya16/swe645assignment2:${dateTag}"
                 }
             }
         }
