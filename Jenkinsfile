@@ -1,10 +1,10 @@
 pipeline{
+    agent any
     environment{
         registry = "bhavya16/swe645assignment2"
         registryCredential = 'dockerhub'
         def dateTag = new Date().format("yyyyMMdd-HHmmss")
     }
-    agent any
         stages{
             stage('Building docker image'){
                 steps{
