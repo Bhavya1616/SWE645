@@ -27,14 +27,14 @@ pipeline{
                     }
                 }
             }
-            stage('Deploying to single node in Rancher'){
-                steps{
-                    script{
-                        sh 'kubectl apply -f sweassign2.yaml'+ dateTag
-                       
-                    }
-                }
-            }
+        stage('Deploying to single node in Rancher'){
+    steps{
+        script{
+            sh kubectl apply -f sweassign2.yaml${dateTag}
+        }
+    }
+}
+
         }
     
     post{
