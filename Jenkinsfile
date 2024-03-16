@@ -30,7 +30,7 @@ pipeline{
             stage('Deploying to single node in Rancher'){
                 steps{
                     script{
-                        sh 'kubectl set image deployment/deploynodeport container-0=bhavya16/swe645assignment2:'+ dateTag
+                        sh 'kubectl apply -f sweassign2.yaml'+ dateTag
                        
                     }
                 }
