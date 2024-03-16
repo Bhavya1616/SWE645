@@ -30,7 +30,7 @@ pipeline{
         stage('Deploying to single node in Rancher'){
             steps{
                 script{
-                    sh "kubectl apply -f deploynodeport.yaml${dateTag}"
+                    sh "kubectl apply -f deploynodeport.yaml ${dateTag}"
                 }
             }
         }
