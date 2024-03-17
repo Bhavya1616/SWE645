@@ -33,7 +33,7 @@ pipeline {
         stage('Retrieve latest deployment YAML') {
             steps {
                 script {
-                    sh 'kubectl get deployment deploynodeport -o yaml > deploynodeport.yaml'
+                    sh 'kubectl get deployment deployment -o yaml > deployment.yaml'
                 }
             }
         }
@@ -41,7 +41,8 @@ pipeline {
         stage('Deploying to single node in Rancher') {
             steps {
                 script {
-                    sh 'kubectl apply -f deploynodeport.yaml'
+                    sh 'kubectl apply -f deployment.yaml'
+                    sh 'kubectl apply -f nodeport.yaml'
                 }
             }
         }
