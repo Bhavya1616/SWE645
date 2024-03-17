@@ -13,7 +13,7 @@ pipeline {
             steps {
                 script {
                     docker.withRegistry("${dockerRegistryUrl}", "${registryCredential}") {
-                        def img = docker.build("${registry}:${dateTag}")
+                        def img = docker.build("${registry}:latest")
                     }
                 }
             }
@@ -23,7 +23,7 @@ pipeline {
             steps {
                 script {
                     docker.withRegistry("${dockerRegistryUrl}", "${registryCredential}") {
-                        def image = docker.build("${registry}:${dateTag}", ". --no-cache")
+                        def image = docker.build("${registry}:latest", ". --no-cache")
                         image.push()
                     }
                 }
