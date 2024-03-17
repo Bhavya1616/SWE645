@@ -35,7 +35,7 @@ pipeline {
                 script {
                     sh 'kubectl apply -f deployment.yaml'
                     sh 'kubectl apply -f nodeport.yaml'
-                    sh 'kubectl rollout restart deployment/deployment.yaml'
+                    sh 'kubectl rollout restart deployment/deployment'
                 }
             }
         }
