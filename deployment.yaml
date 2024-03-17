@@ -5,15 +5,15 @@ metadata:
 spec:
   selector:
     matchLabels:
-      app: redis
+      app: webpage
   replicas: 3
   template:
     metadata:
       labels:
-        app: redis
+        app: webpage
     spec:
       containers:
-      - name: webpage
+      - name: webpagepod
         image: bhavya16/swe645assignment2:latest
         ports:
         - containerPort: 80
