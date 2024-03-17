@@ -29,15 +29,7 @@ pipeline {
                 }
             }
         }
-        
-        stage('Retrieve latest deployment YAML') {
-            steps {
-                script {
-                    sh 'kubectl get deployment deployment -o yaml > deployment.yaml'
-                }
-            }
-        }
-        
+                
         stage('Deploying to single node in Rancher') {
             steps {
                 script {
