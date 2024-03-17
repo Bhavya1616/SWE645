@@ -33,8 +33,9 @@ pipeline {
         stage('Deploying to single node in Rancher') {
             steps {
                 script {
-                    sh 'kubectl rollout restart deployment/deployment.yaml'
+                    sh 'kubectl apply -f deployment.yaml'
                     sh 'kubectl apply -f nodeport.yaml'
+                    sh 'kubectl rollout restart deployment/deployment.yaml'
                 }
             }
         }
