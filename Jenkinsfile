@@ -1,11 +1,13 @@
 pipeline {
     agent any
+    
     environment {
         registry = "bhavya16/swe645assignment2"
         registryCredential = 'dockerhub'
-        dockerRegistryUrl = "docker.io" // Define the Docker registry URL explicitly
+        dockerRegistryUrl = "https://index.docker.io/v1/" // Define the Docker registry URL explicitly
         dateTag = new Date().format("yyyyMMdd-HHmmss")
     }
+    
     stages {
         stage('Building docker image') {
             steps {
@@ -16,6 +18,7 @@ pipeline {
                 }
             }
         }
+        
         stage('Publishing code to Docker Hub') {
             steps {
                 script {
@@ -26,6 +29,7 @@ pipeline {
                 }
             }
         }
+        
         stage('Retrieve latest deployment YAML') {
             steps {
                 script {
@@ -33,6 +37,7 @@ pipeline {
                 }
             }
         }
+        
         stage('Deploying to single node in Rancher') {
             steps {
                 script {
@@ -41,6 +46,7 @@ pipeline {
             }
         }
     }
+    
     post {
         always {
             sh 'docker logout'
