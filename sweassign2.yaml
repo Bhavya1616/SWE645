@@ -1,0 +1,32 @@
+apiVersion: v1
+kind: Config
+clusters:
+- name: "sweassign2"
+  cluster:
+    server: "https://44.217.168.96/k8s/clusters/c-m-r8qjqmx6"
+    certificate-authority-data: "LS0tLS1CRUdJTiBDRVJUSUZJQ0FURS0tLS0tCk1JSUJ2VENDQ\
+      VdPZ0F3SUJBZ0lCQURBS0JnZ3Foa2pPUFFRREFqQkdNUnd3R2dZRFZRUUtFeE5rZVc1aGJXbGoKY\
+      kdsemRHVnVaWEl0YjNKbk1TWXdKQVlEVlFRRERCMWtlVzVoYldsamJHbHpkR1Z1WlhJdFkyRkFNV\
+      GN4TURZdwpOekF6TWpBZUZ3MHlOREF6TVRZeE5qTTNNVEphRncwek5EQXpNVFF4TmpNM01USmFNR\
+      Vl4SERBYUJnTlZCQW9UCkUyUjVibUZ0YVdOc2FYTjBaVzVsY2kxdmNtY3hKakFrQmdOVkJBTU1IV\
+      1I1Ym1GdGFXTnNhWE4wWlc1bGNpMWoKWVVBeE56RXdOakEzTURNeU1Ga3dFd1lIS29aSXpqMENBU\
+      VlJS29aSXpqMERBUWNEUWdBRWN6UERsM3VGcG9XSgovR2cxLzBEakJlUjA1T01sOXZOcm8xTlJNT\
+      C9pMmRtQnZPek1Tb1RaLy9CUWdhcDV2MlpYV2x6ZWdibkRyVkNsCmJHVGgycCtEajZOQ01FQXdEZ\
+      1lEVlIwUEFRSC9CQVFEQWdLa01BOEdBMVVkRXdFQi93UUZNQU1CQWY4d0hRWUQKVlIwT0JCWUVGR\
+      05UUmpLaWNMYSt6WHV5NlE4R1hncmx6QnpRTUFvR0NDcUdTTTQ5QkFNQ0EwZ0FNRVVDSUdCOQozS\
+      nAvNS9YOXFQQzlFQVlreDRXRnJJSFhYbWpENHgwZHdGSkFOSHRrQWlFQTdTSnoyTExzRkRTY2twc\
+      VAxUldCCnZON2FtdklTMi9Yd09uQWhTNWFpdjBJPQotLS0tLUVORCBDRVJUSUZJQ0FURS0tLS0t"
+
+users:
+- name: "sweassign2"
+  user:
+    token: "kubeconfig-user-ckx5p542m5:t6z9csdgngdlpk52zpzc6v2g5dpw8262wd6sxhqgckwdq9759fghb5"
+
+
+contexts:
+- name: "sweassign2"
+  context:
+    user: "sweassign2"
+    cluster: "sweassign2"
+
+current-context: "sweassign2"
